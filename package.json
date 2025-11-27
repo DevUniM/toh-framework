@@ -1,0 +1,60 @@
+{
+  "name": "toh-framework",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "AI-Orchestration Driven Development Framework - สั่งแล้วจบ ไม่ถาม ไม่รอ",
+  "author": {
+    "name": "Wasin Treesinthuros",
+    "email": "dr.wasin@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wasintoh/toh-framework.git"
+  },
+  "homepage": "https://github.com/wasintoh/toh-framework#readme",
+  "bugs": {
+    "url": "https://github.com/wasintoh/toh-framework/issues"
+  },
+  "keywords": [
+    "ai",
+    "development",
+    "framework",
+    "claude",
+    "cursor",
+    "vibe-coding",
+    "agentic",
+    "orchestration",
+    "nextjs",
+    "typescript",
+    "thai"
+  ],
+  "bin": {
+    "toh": "./bin/toh-cli.js",
+    "toh-framework": "./bin/toh-cli.js"
+  },
+  "main": "bin/toh-cli.js",
+  "files": [
+    "bin",
+    "installer",
+    "src",
+    "docs",
+    "dist"
+  ],
+  "scripts": {
+    "install:local": "node bin/toh-cli.js install",
+    "list": "node bin/toh-cli.js list",
+    "status": "node bin/toh-cli.js status",
+    "bundle": "node bin/toh-cli.js bundle"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "inquirer": "^9.2.23",
+    "ora": "^8.0.1",
+    "fs-extra": "^11.2.0"
+  }
+}

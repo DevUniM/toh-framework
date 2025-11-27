@@ -1,0 +1,8 @@
+# Ignore for npm publish
+node_modules/
+.DS_Store
+.git/
+.gitignore
+*.log
+coverage/
+.env*
