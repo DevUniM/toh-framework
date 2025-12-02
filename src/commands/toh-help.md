@@ -14,7 +14,7 @@ shortcuts:
 เมื่อ user เรียก `/toh:help` ให้แสดงข้อมูลต่อไปนี้:
 
 <help_response>
-## 🎯 Toh Framework v1.2.0
+## 🎯 Toh Framework v1.2.1
 
 **"สั่งแล้วจบ ไม่ถาม ไม่รอ"** - AI-Orchestration Driven Development
 
@@ -125,7 +125,7 @@ Toh Framework มี Memory System ในตัว ช่วยให้:
 
 ---
 
-### 🆕 What's New in v1.2.0
+### 🆕 What's New in v1.2.1
 
 - 🧠 **Plan Orchestrator v2.0** - แสดงแผนก่อน รอ confirm ก่อนทำ
 - 📋 **Planning Mode + Executing Mode** - แยก workflow ชัดเจน
