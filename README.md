@@ -200,6 +200,24 @@ npx toh-framework install --ide codex
 npx toh-framework install --ide "claude,cursor,gemini,codex"
 ```
 
+## 🔄 Update to Latest Version
+
+If you already have Toh installed and want to update:
+
+```bash
+# Method 1: Use npx (recommended - always gets latest)
+npx toh-framework@latest install
+
+# Method 2: If installed globally
+npm update -g toh-framework
+toh install
+
+# Method 3: Just reinstall (overwrites safely)
+npx toh-framework install
+```
+
+> 💡 **Tip:** Reinstalling updates skills, agents, and commands without deleting your existing memory!
+
 ## 🛠️ Supported IDEs & CLI Tools
 
 | Tool | Company | Config Location | Status |

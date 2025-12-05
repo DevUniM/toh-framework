@@ -13,6 +13,16 @@
 
 > 📖 **[🇬🇧 English Documentation](../README.md)**
 
+## 🤖 รองรับ IDEs
+
+| IDE | สถานะ | หมายเหตุ |
+|-----|--------|-------|
+| 🧠 **Claude Code** | ✅ รองรับเต็มที่ | Slash commands, Memory system |
+| 📝 **Cursor** | ✅ รองรับเต็มที่ | @ file references |
+| 🌌 **Google Antigravity** | ✅ **ใหม่!** รองรับเต็มที่ | Gemini integration ล่าสุด |
+| 💎 **Gemini CLI** | ✅ รองรับเต็มที่ | Context files auto-loaded |
+| 🤖 **Codex CLI** | ✅ รองรับ | OpenAI agents |
+
 ## 💡 ทำไมต้อง Toh?
 
 **Toh** = **T**ype **O**nce, **H**ave it all!
@@ -37,7 +47,49 @@ Toh Framework ทำให้คุณ:
 - **💼 พร้อมใช้งานจริง** - ไม่ใช่ prototype แต่ใช้งานได้จริง
 - **🔧 รองรับหลาย IDE** - Claude Code, Cursor, Gemini CLI, Codex CLI
 
-## 🆕 มีอะไรใหม่ใน v1.4.0
+## 🆕 มีอะไรใหม่ใน v1.5.0
+
+### 🌌 Google Antigravity - รองรับเต็มรูปแบบ!
+
+รองรับ **Antigravity** (Gemini IDE) ของ Google แล้ว! ติดตั้งครั้งเดียว ใช้ได้ทุก IDE:
+
+```bash
+npx toh-framework install
+# เลือก: Claude Code ✅, Cursor ✅, Gemini CLI / Antigravity ✅
+```
+
+### 🏗️ Dual Folder Architecture
+
+| IDE | Folder | เหตุผล |
+|-----|--------|-----|
+| Claude Code | `.claude/` | จำเป็นสำหรับ slash commands |
+| อื่นๆ | `.toh/` | Central resources |
+
+ทั้งสอง folder มี skills, agents, commands เหมือนกัน - sync ตอน install!
+
+### 🔒 Memory Protocol Enforcement
+
+- ✅ บังคับ load/save memory ทุกครั้ง
+- ✅ Skills checkpoint - AI ต้องรายงาน skills ที่โหลด
+- ✅ Memory files เป็นภาษาอังกฤษเพื่อความสม่ำเสมอ
+- ✅ ใช้ได้ข้าม IDE
+
+### 📋 Skills Loading Checkpoint
+
+AI ต้องรายงาน skills ที่โหลดตอนเริ่มต้นทุกครั้ง:
+```markdown
+📚 **Skills Loaded:**
+- design-mastery ✅ (13 business profiles)
+- premium-experience ✅ (5+ pages, animations)
+
+🤖 **Agent:** vibe-agent
+
+💾 **Memory:** Loaded ✅
+```
+
+---
+
+## ✨ Features จาก v1.4.0 (ยังใช้ได้!)
 
 ### ✨ Smart Single Command & Premium Experience
 
@@ -99,6 +151,24 @@ npx toh-framework install --ide codex
 # ติดตั้งหลาย IDEs
 npx toh-framework install --ide "claude,cursor,gemini,codex"
 ```
+
+## 🔄 อัพเดทเป็น Version ใหม่
+
+ถ้าติดตั้งไว้แล้ว อยากอัพเดทเป็น version ใหม่:
+
+```bash
+# วิธีที่ 1: ใช้ npx (แนะนำ - ได้ version ล่าสุดเสมอ)
+npx toh-framework@latest install
+
+# วิธีที่ 2: ถ้าติดตั้ง global ไว้
+npm update -g toh-framework
+toh install
+
+# วิธีที่ 3: ติดตั้งใหม่ทับได้เลย
+npx toh-framework install
+```
+
+> 💡 **Tip:** การ install ซ้ำจะอัพเดท skills, agents, commands ให้ใหม่โดยไม่ลบ memory ที่มีอยู่!
 
 ## 🛠️ IDEs และ CLI Tools ที่รองรับ
 
