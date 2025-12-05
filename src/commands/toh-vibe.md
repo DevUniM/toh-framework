@@ -134,9 +134,41 @@ skills:
    │   └── Mock API that looks real
    └── Utility functions (lib/utils/*.ts)
        └── formatDate, formatCurrency, etc.
+```
 
-7. START Dev Server
+### Phase 4.5: Zero Error Check (MANDATORY!) 🚨
+
+```
+7. 🔍 BUILD & VERIFY (ห้ามข้าม!)
+   
+   ขั้นตอน:
+   ├── npm run build
+   │   ├── ✅ Pass → ไปต่อ Phase 5
+   │   └── ❌ Error → แก้ทันที! (ดูด้านล่าง)
+   │
    └── npm run dev → VERIFY it runs!
+
+   ⚠️ Common Errors ที่ต้องแก้:
+   
+   1. Tailwind CSS Classes ไม่ถูก:
+      ❌ className="text-primary-500" (ไม่มีใน default)
+      ✅ className="text-primary" หรือเพิ่มใน tailwind.config
+      
+   2. Import ผิด:
+      ❌ import { Button } from "@/components/ui/Button"
+      ✅ import { Button } from "@/components/ui/button"
+      
+   3. Missing dependencies:
+      → npm install [package]
+      
+   4. Type errors:
+      → แก้ types ให้ถูกต้อง
+   
+   🔄 Loop จนกว่าจะ:
+   └── npm run build → SUCCESS (exit code 0)
+   
+   ❌ ห้าม deliver ถ้ายังมี error!
+   ❌ ห้ามบอก user ให้ไป /toh:fix เอง!
 ```
 
 ### Phase 5: Report & Save Memory
@@ -375,6 +407,8 @@ design:
 5. **NEVER** use Lorem ipsum - ใช้ mock data จริง!
 6. **NEVER** skip business analysis - วิเคราะห์ก่อนทำ!
 7. **NEVER** forget to tell user what to do next - Response Excellence!
+8. **NEVER** deliver with build errors - ต้อง `npm run build` ผ่านก่อน!
+9. **NEVER** tell user to fix errors themselves - แก้ให้เสร็จก่อน deliver!
 
 ## ✅ Rules (ต้องทำเสมอ!)
 
@@ -383,9 +417,10 @@ design:
 3. **ALWAYS** create 5-7 pages minimum
 4. **ALWAYS** use realistic mock data
 5. **ALWAYS** apply Anti AI-Looking rules
-6. **ALWAYS** run dev server and verify
-7. **ALWAYS** use Response Excellence format
-8. **ALWAYS** tell user exactly what they got and what to do
+6. **ALWAYS** run `npm run build` and fix ALL errors before deliver
+7. **ALWAYS** run dev server and verify
+8. **ALWAYS** use Response Excellence format
+9. **ALWAYS** tell user exactly what they got and what to do
 
 ---
 
@@ -396,5 +431,6 @@ design:
 - [ ] Design สวย ไม่ดู "AI-looking"
 - [ ] Design เหมาะกับประเภทธุรกิจ (ไม่ใช่ template เดียว)
 - [ ] Mock data realistic (ไม่ใช่ Lorem ipsum)
+- [ ] **`npm run build` ผ่าน 100% ไม่มี error** 🚨
 - [ ] User รู้ว่าได้อะไร ต้องทำอะไร ไม่ต้องถามซ้ำ
 - [ ] ดีกว่า Lovable ตั้งแต่แรก! 🎉

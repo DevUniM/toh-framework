@@ -2,6 +2,78 @@
 
 All notable changes to Toh Framework will be documented in this file.
 
+## [1.5.0] - 2025-12-05
+
+### 🌌 Google Antigravity - Full Support!
+
+#### Added - Full Google Antigravity/Gemini Support
+
+- **Context Files Auto-Loading** - Skills and agents loaded via `settings.json`
+- **GEMINI.md Configuration** - Complete rules and command recognition
+- **Skills Loading Checkpoint** - AI must report loaded skills
+- **Memory Protocol Enforcement** - Mandatory load/save
+
+#### Changed - Dual Folder Architecture
+
+| IDE | Folder | Reason |
+|-----|--------|--------|
+| Claude Code | `.claude/` | Required for slash commands to work |
+| Cursor | `.toh/` | Uses @ file references |
+| Gemini/Antigravity | `.toh/` | Uses contextFiles in settings.json |
+| Codex | `.toh/` | Uses path references |
+
+- Claude Code now uses `.claude/` folder (copies from `.toh/` on install)
+- All other IDEs use `.toh/` as central resources
+- Resources are synced on every `toh install`
+
+#### Added - Memory Protocol Enforcement
+
+```
+BEFORE Work:
+1. Read .claude/memory/ (or .toh/memory/)
+2. Load active.md, summary.md, decisions.md
+3. Report "Memory loaded!"
+
+AFTER Work:
+1. Update memory files
+2. Confirm "Memory saved ✅"
+```
+
+- **Mandatory** - AI cannot skip memory operations
+- **English Only** - Memory files always in English for consistency
+- **Cross-IDE** - Same memory format works across all IDEs
+
+#### Added - Skills Loading Checkpoint
+
+AI must now report skills at the START of every response:
+
+```markdown
+📚 **Skills Loaded:**
+- skill-name-1 ✅ (what was learned)
+- skill-name-2 ✅ (what was learned)
+
+🤖 **Agent:** agent-name
+
+💾 **Memory:** Loaded ✅
+```
+
+This ensures AI actually reads skills before working.
+
+#### Changed - Memory Templates to English
+
+- `active.md` - Now English only
+- `summary.md` - Now English only  
+- `decisions.md` - Now English only
+- `MEMORY-SYSTEM.md` - Full English documentation
+
+#### Fixed
+
+- Claude Code slash commands not showing (required `.claude/` folder)
+- Memory not being created/saved by AI
+- Skills not being read before execution
+
+---
+
 ## [1.4.0] - 2025-12-04
 
 ### ✨ Smart Single Command & Premium Experience

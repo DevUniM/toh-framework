@@ -1,22 +1,22 @@
 # 🧠 Toh Framework - Smart Memory System
 
-> ระบบ Memory อัตโนมัติที่ทำให้ AI ไม่ลืมงาน แม้เปลี่ยน Chat, IDE, หรือ Model
+> Automatic Memory System that ensures AI never forgets work, even when changing Chat, IDE, or Model.
 
 ---
 
 ## 🎯 Why Memory System?
 
-### ปัญหาที่แก้
-- ❌ Token เต็ม → Context หาย
-- ❌ เปลี่ยน Chat → ต้องอธิบายใหม่
-- ❌ ย้าย IDE (Claude → Cursor) → ลืมทุกอย่าง
-- ❌ ย้าย Model → Context หาย
+### Problems Solved
+- ❌ Token limit reached → Context lost
+- ❌ Change Chat → Have to explain everything again
+- ❌ Switch IDE (Claude → Cursor) → Forget everything
+- ❌ Switch Model → Context lost
 
 ### Solution
-- ✅ Auto-save ทุกครั้งที่ทำงานเสร็จ
-- ✅ Auto-load ทุกครั้งที่เริ่ม session
-- ✅ User ไม่ต้องทำอะไรเลย
-- ✅ ใช้ได้ทุก IDE, ทุก Model
+- ✅ Auto-save after every task completion
+- ✅ Auto-load at every session start
+- ✅ User doesn't have to do anything
+- ✅ Works across all IDEs, all Models
 
 ---
 
@@ -25,75 +25,75 @@
 ```
 .toh/
 └── memory/
-    ├── active.md          # 🔥 งานปัจจุบัน (~500 tokens)
-    ├── summary.md         # 📋 สรุปโปรเจค (~1,000 tokens)
-    ├── decisions.md       # 🧠 การตัดสินใจสำคัญ (~500 tokens)
-    └── archive/           # 📦 ประวัติเก่า (โหลดเมื่อต้องการ)
+    ├── active.md          # 🔥 Current task (~500 tokens)
+    ├── summary.md         # 📋 Project summary (~1,000 tokens)
+    ├── decisions.md       # 🧠 Key decisions (~500 tokens)
+    └── archive/           # 📦 Historical data (load on-demand)
         ├── 2024-11-27.md
         └── ...
 ```
 
-### Total Context Load: ~2,000 tokens (เท่านั้น!)
+### Total Context Load: ~2,000 tokens (only!)
 
 ---
 
 ## 📄 Memory Files
 
-### 1. `active.md` - งานปัจจุบัน
+### 1. `active.md` - Current Task
 
 ```markdown
 # 🔥 Active Task
 
 ## Current Focus
-[สิ่งที่กำลังทำอยู่ตอนนี้]
+[What is being worked on right now]
 
 ## In Progress
 - [ ] Task 1
 - [ ] Task 2
 
 ## Just Completed
-- [x] Task ที่เพิ่งทำเสร็จ
+- [x] Recently completed task
 
 ## Next Steps
-- สิ่งที่ต้องทำต่อ
+- What needs to be done next
 
 ## Blockers / Issues
-- ปัญหาที่ติดอยู่ (ถ้ามี)
+- Problems encountered (if any)
 
 ---
 *Last updated: [timestamp]*
 ```
 
-### 2. `summary.md` - สรุปโปรเจค
+### 2. `summary.md` - Project Summary
 
 ```markdown
 # 📋 Project Summary
 
 ## Project Overview
-- Name: [ชื่อโปรเจค]
-- Type: [ประเภท เช่น SaaS, E-commerce]
+- Name: [Project name]
+- Type: [Type e.g. SaaS, E-commerce]
 - Tech Stack: Next.js 14, Tailwind, shadcn/ui, Zustand, Supabase
 
 ## Completed Features
-- ✅ Feature 1 - [คำอธิบายสั้น]
-- ✅ Feature 2 - [คำอธิบายสั้น]
+- ✅ Feature 1 - [Short description]
+- ✅ Feature 2 - [Short description]
 
 ## Current State
-[สถานะปัจจุบันของโปรเจค]
+[Current project status]
 
 ## Key Files
-- `src/app/page.tsx` - หน้าหลัก
+- `src/app/page.tsx` - Main page
 - `src/stores/` - State management
 - `src/components/` - UI Components
 
 ## Important Notes
-- [สิ่งสำคัญที่ต้องจำ]
+- [Important things to remember]
 
 ---
 *Last updated: [timestamp]*
 ```
 
-### 3. `decisions.md` - การตัดสินใจสำคัญ
+### 3. `decisions.md` - Key Decisions
 
 ```markdown
 # 🧠 Key Decisions
@@ -101,172 +101,121 @@
 ## Architecture Decisions
 | Date | Decision | Reason |
 |------|----------|--------|
-| 2024-11-27 | ใช้ Zustand แทน Redux | เรียบง่าย เหมาะกับ Solo Dev |
-| 2024-11-27 | ใช้ shadcn/ui | Customizable, ไม่ bloat |
+| [date] | Use Toh Framework | AI-Orchestration Driven Development |
 
 ## Design Decisions
 | Date | Decision | Reason |
 |------|----------|--------|
-| 2024-11-27 | สี Primary: Blue | ตาม brand guideline |
 
-## Business Logic
+## Technical Decisions
 | Date | Decision | Reason |
 |------|----------|--------|
-| 2024-11-27 | Free tier 100 items | เพื่อดึงดูด users |
-
-## Rejected Ideas
-| Date | Idea | Why Rejected |
-|------|------|--------------|
-| 2024-11-27 | ใช้ Redux | ซับซ้อนเกินไป |
 
 ---
 *Last updated: [timestamp]*
 ```
 
-### 4. `archive/YYYY-MM-DD.md` - ประวัติรายวัน
+---
 
-```markdown
-# 📦 Archive: 2024-11-27
+## 🔄 Memory Protocol
 
-## Sessions
-### Session 1 (09:00)
-- สร้างหน้า Login
-- เชื่อม Supabase Auth
+### BEFORE Starting Any Work
 
-### Session 2 (14:00)
-- แก้ bug validation
-- เพิ่ม loading state
+```
+STEP 1: Check .toh/memory/ folder
+        ├── Folder doesn't exist? → Create it!
+        └── Folder exists? → Continue to Step 2
 
-## Completed Tasks
-- [x] Login page
-- [x] Auth integration
-- [x] Form validation
+STEP 2: Load these 3 files (MANDATORY)
+        ├── .toh/memory/active.md
+        ├── .toh/memory/summary.md
+        └── .toh/memory/decisions.md
 
-## Notes
-- พบ bug ใน Safari ต้องแก้ภายหลัง
+STEP 3: Check if files have real data
+        ├── Files empty/default? → ANALYZE PROJECT FIRST!
+        │   ├── Scan app/, components/, types/, stores/
+        │   ├── Update summary.md with what exists
+        │   └── Update active.md with current state
+        └── Files have data? → Continue working
+
+STEP 4: Acknowledge context loaded
+        (Brief confirmation to user)
+```
+
+### AFTER Completing Any Work
+
+```
+STEP 1: Update active.md (ALWAYS!)
+        ├── Current Focus → What was just done
+        ├── In Progress → Mark completed items
+        ├── Just Completed → Add what you finished
+        └── Next Steps → What should be done next
+
+STEP 2: Update decisions.md (if decisions were made)
+        └── Add row: | Date | Decision | Reason |
+
+STEP 3: Update summary.md (if feature completed)
+        └── Add to Completed Features list
+
+STEP 4: Confirm to user
+        └── "Memory saved ✅"
 ```
 
 ---
 
-## 🔄 Auto-Save Flow
+## ⚠️ Critical Rules
 
-```
-┌─────────────────────────────────────────────────────────┐
-│  Agent ทำงานเสร็จ (เช่น /toh:ui สร้าง component เสร็จ)   │
-└─────────────────────────────────────────────────────────┘
-                         ↓
-┌─────────────────────────────────────────────────────────┐
-│  🔄 AUTO-SAVE TRIGGER                                   │
-│                                                         │
-│  1. อัพเดท active.md                                    │
-│     - เพิ่มใน "Just Completed"                          │
-│     - อัพเดท "Current Focus"                            │
-│     - อัพเดท "Next Steps"                               │
-│                                                         │
-│  2. เพิ่มใน decisions.md (ถ้ามีการตัดสินใจใหม่)           │
-│                                                         │
-│  3. ถ้า active.md ยาวเกิน 50 lines:                      │
-│     - สรุปลง summary.md                                 │
-│     - ย้ายของเก่าไป archive/                             │
-│                                                         │
-│  4. อัพเดท timestamp                                    │
-└─────────────────────────────────────────────────────────┘
-                         ↓
-┌─────────────────────────────────────────────────────────┐
-│  ✅ Memory บันทึกแล้ว - User ไม่ต้องทำอะไร               │
-└─────────────────────────────────────────────────────────┘
-```
+1. **NEVER start work without loading memory first!**
+2. **NEVER finish work without saving memory!**
+3. **NEVER ask user "should I save memory?" - just do it automatically!**
+4. **If memory files are empty but project has code → ANALYZE and populate first!**
+5. **Memory files must ALWAYS be in English for consistency!**
 
 ---
 
-## 🔄 Auto-Load Flow
+## 🔧 Memory Commands
 
-```
-┌─────────────────────────────────────────────────────────┐
-│  User เริ่ม Session ใหม่                                 │
-│  (เปิด Chat ใหม่ / เปลี่ยน IDE / เปลี่ยน Model)          │
-└─────────────────────────────────────────────────────────┘
-                         ↓
-┌─────────────────────────────────────────────────────────┐
-│  🔄 AUTO-LOAD (เมื่อ User พิมพ์คำสั่ง /toh:*)            │
-│                                                         │
-│  1. ตรวจสอบว่ามี .toh/memory/ หรือไม่                    │
-│                                                         │
-│  2. ถ้ามี → โหลด:                                        │
-│     - active.md (งานปัจจุบัน)                            │
-│     - summary.md (สรุปโปรเจค)                            │
-│     - decisions.md (การตัดสินใจ)                         │
-│                                                         │
-│  3. AI เข้าใจ context ทันที (~2,000 tokens)              │
-└─────────────────────────────────────────────────────────┘
-                         ↓
-┌─────────────────────────────────────────────────────────┐
-│  AI: "สวัสดีค่ะ! หนูจำได้ว่าเรากำลังทำ [active task]      │
-│       โปรเจคนี้เป็น [summary] จะทำต่อไหมคะ?"              │
-└─────────────────────────────────────────────────────────┘
-```
+| Command | Action |
+|---------|--------|
+| `/toh:memory` | Show current memory status |
+| `/toh:memory save` | Force save all memory files |
+| `/toh:memory load` | Force reload all memory files |
+| `/toh:memory clear` | Archive and reset memory |
 
 ---
 
-## 📋 Memory Instructions for AI
+## 💡 Best Practices
 
-### เมื่อเริ่ม Session (Auto-Load)
+### For AI Agents
+- Load memory at the START of every conversation
+- Save memory at the END of every task
+- Keep active.md focused (only current task)
+- Archive old tasks when switching to new ones
 
-```
-1. ตรวจสอบ .toh/memory/ folder
-2. ถ้ามี → อ่านไฟล์ทั้ง 3 (active, summary, decisions)
-3. ทำความเข้าใจ context
-4. พร้อมทำงานต่อ
-```
-
-### เมื่อทำงานเสร็จ (Auto-Save)
-
-```
-1. สรุปสิ่งที่ทำไป
-2. อัพเดท active.md:
-   - ย้ายจาก "In Progress" → "Just Completed"
-   - อัพเดท "Next Steps"
-3. ถ้ามีการตัดสินใจสำคัญ → เพิ่มใน decisions.md
-4. ถ้า active.md ยาวเกิน → archive
-5. อัพเดท timestamp
-```
-
-### เมื่อต้องการข้อมูลเก่า
-
-```
-1. ดูใน archive/ folder
-2. โหลดเฉพาะวันที่เกี่ยวข้อง
-3. ไม่ต้องโหลดทั้งหมด
-```
+### For Users
+- Trust the system - it works automatically
+- Check `.toh/memory/` if something seems wrong
+- Use `/toh:memory` to see current state
 
 ---
 
-## 🎯 Key Principles
+## 📊 Token Budget
 
-1. **User ไม่ต้องทำอะไร** - ทุกอย่างอัตโนมัติ
-2. **Context น้อย** - โหลดแค่ ~2,000 tokens
-3. **IDE-agnostic** - ใช้ได้ทุก IDE
-4. **Model-agnostic** - ย้าย model ได้
-5. **Human-readable** - ไฟล์เป็น Markdown อ่านได้
+| File | Max Tokens | Purpose |
+|------|------------|---------|
+| active.md | ~500 | Current task details |
+| summary.md | ~1,000 | Project overview |
+| decisions.md | ~500 | Key decisions log |
+| **Total** | **~2,000** | Fits easily in context |
 
 ---
 
-## 🔧 Technical Notes
+## 🔗 Cross-IDE Compatibility
 
-### Memory File Format: Markdown
-- อ่านง่ายทั้ง AI และ Human
-- Edit ด้วยมือได้ถ้าต้องการ
-- Version control ได้ (git)
+Memory system works identically across:
+- ✅ Claude Code
+- ✅ Cursor
+- ✅ Gemini CLI / Google Antigravity
+- ✅ Codex CLI
 
-### Token Budget
-| File | Max Lines | ~Tokens |
-|------|-----------|---------|
-| active.md | 30 | 500 |
-| summary.md | 60 | 1,000 |
-| decisions.md | 30 | 500 |
-| **Total** | 120 | **2,000** |
-
-### Archive Strategy
-- เก็บ 7 วันล่าสุด
-- เก่ากว่า 7 วัน → auto-delete (optional)
-- หรือเก็บไว้ตลอด (default)
+Same files, same format, same behavior!

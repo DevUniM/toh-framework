@@ -1,17 +1,17 @@
 # 🔥 Active Task
 
 ## Current Work
-[ยังไม่มีงานที่กำลังทำ - เริ่มต้นด้วย /toh:vibe หรือ /toh:plan]
+[No active task - Start with /toh:vibe or /toh:plan]
 
 ## Last Action
-[ยังไม่มี]
+[None yet]
 
 ## Next Steps
-- เริ่มโปรเจคใหม่ด้วย `/toh:vibe`
-- หรือวางแผนด้วย `/toh:plan`
+- Start a new project with `/toh:vibe`
+- Or plan with `/toh:plan`
 
 ## Blockers
-[ไม่มี]
+[None]
 
 ---
 Updated: {{TIMESTAMP}}

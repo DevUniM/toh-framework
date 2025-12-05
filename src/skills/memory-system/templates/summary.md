@@ -11,10 +11,10 @@
 {{PROJECT_DESCRIPTION}}
 
 ## Completed Features
-[ยังไม่มี]
+[None yet]
 
 ## In Progress
-[ยังไม่มี]
+[None yet]
 
 ## Project Structure
 ```

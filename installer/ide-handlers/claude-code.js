@@ -12,22 +12,37 @@ export async function setupClaudeCode(targetDir, language = 'en') {
   const spinner = ora('Configuring Claude Code...').start();
   
   try {
-    // Create .claude directory structure
+    // v1.4.0: Claude Code needs .claude/ folder for slash commands to work
+    // Copy resources from .toh/ to .claude/
+    
+    const tohDir = join(targetDir, '.toh');
     const claudeDir = join(targetDir, '.claude');
+    
+    // Create .claude/ directory structure
     await fs.ensureDir(join(claudeDir, 'skills'));
     await fs.ensureDir(join(claudeDir, 'agents'));
     await fs.ensureDir(join(claudeDir, 'commands'));
+    await fs.ensureDir(join(claudeDir, 'memory', 'archive'));
+    
+    // Copy resources from .toh/ to .claude/ (if .toh/ exists)
+    if (fs.existsSync(join(tohDir, 'skills'))) {
+      await fs.copy(join(tohDir, 'skills'), join(claudeDir, 'skills'), { overwrite: true });
+    }
+    if (fs.existsSync(join(tohDir, 'agents'))) {
+      await fs.copy(join(tohDir, 'agents'), join(claudeDir, 'agents'), { overwrite: true });
+    }
+    if (fs.existsSync(join(tohDir, 'commands'))) {
+      await fs.copy(join(tohDir, 'commands'), join(claudeDir, 'commands'), { overwrite: true });
+    }
+    if (fs.existsSync(join(tohDir, 'templates'))) {
+      await fs.copy(join(tohDir, 'templates'), join(claudeDir, 'templates'), { overwrite: true });
+    }
 
-    // Create .toh/memory directory structure (v1.1.0 - Memory System)
-    const tohDir = join(targetDir, '.toh');
-    const memoryDir = join(tohDir, 'memory');
-    const archiveDir = join(memoryDir, 'archive');
-    await fs.ensureDir(archiveDir);
-
-    // Create memory template files (always English)
+    // Create memory template files in .claude/memory/
+    const memoryDir = join(claudeDir, 'memory');
     await createMemoryFiles(memoryDir);
 
-    // Create CLAUDE.md with Toh Framework rules
+    // Create CLAUDE.md with Toh Framework rules (references .claude/*)
     const claudeMdPath = join(targetDir, 'CLAUDE.md');
     const claudeMdContent = generateClaudeMd(language);
     
@@ -101,7 +116,7 @@ Project just initialized - ready for commands
 - (will update when files are created)
 
 ## Important Notes
-- Using Toh Framework v1.2.x
+- Using Toh Framework v1.5.x
 - Memory System is active
 
 ---
@@ -151,9 +166,9 @@ function generateClaudeMd(language = 'en') {
 > **IMPORTANT:** This project uses Thai communication mode.
 
 ### Communication Style
-- **ALWAYS respond in Thai (ภาษาไทย)**
-- Be friendly and use polite particles (ครับ/ค่ะ)
-- You can use Thai expressions naturally
+- **Respond in the same language the user uses** (if they write Thai, respond Thai; if English, respond English)
+- Default to Thai if unclear
+- Be friendly and use polite particles (ครับ/ค่ะ) when speaking Thai
 
 ### UI Labels & Text
 - Buttons: Thai (บันทึก, ยกเลิก, ลบ, แก้ไข)
@@ -179,7 +194,8 @@ Use realistic Thai data:
 > **IMPORTANT:** This project uses English communication mode.
 
 ### Communication Style
-- **ALWAYS respond in English**
+- **Respond in the same language the user uses** (if they write Thai, respond Thai; if English, respond English)
+- Default to English if unclear
 - Be professional and clear
 
 ### UI Labels & Text
@@ -301,7 +317,7 @@ User: /toh:p create an e-commerce platform
 ### BEFORE Starting ANY Work:
 
 \`\`\`
-STEP 1: Check .toh/memory/ folder
+STEP 1: Check .claude/memory/ folder
         ├── Folder doesn't exist? → Create it first!
         └── Folder exists? → Continue to Step 2
 
@@ -314,9 +330,9 @@ STEP 2: Check if memory files have real data
         └── Files have data? → Continue to Step 3
 
 STEP 3: Selective Read (load these 3 files)
-        ├── .toh/memory/active.md     (~500 tokens)
-        ├── .toh/memory/summary.md    (~1,000 tokens)
-        └── .toh/memory/decisions.md  (~500 tokens)
+        ├── .claude/memory/active.md     (~500 tokens)
+        ├── .claude/memory/summary.md    (~1,000 tokens)
+        └── .claude/memory/decisions.md  (~500 tokens)
         ⚠️ DO NOT read archive/ unless user asks about history!
 
 STEP 4: Acknowledge to User
@@ -352,7 +368,7 @@ STEP 4: Confirm to User
 ### Memory Structure:
 
 \`\`\`
-.toh/
+.claude/
 └── memory/
     ├── active.md     # Current task (always loaded)
     ├── summary.md    # Project summary (always loaded)
@@ -378,15 +394,96 @@ STEP 4: Confirm to User
 - ✅ Make it responsive (mobile-first)
 - ✅ Save memory after every task
 
-## Skills & Agents
+## Skills & Agents (Claude Code)
 
-Skills and Agents are located in:
+All Toh Framework resources are in \`.claude/\` folder:
 - \`.claude/skills/\` - Technical skills for each domain
 - \`.claude/agents/\` - Specialized AI agents
 - \`.claude/commands/\` - Command definitions
+- \`.claude/memory/\` - Memory system files
+
+## 🚨 MANDATORY: Skills & Agents Loading
+
+> **CRITICAL:** Before executing ANY /toh: command, you MUST load the required skills and agents!
+
+### Command → Skills → Agents Map
+
+| Command | Load These Skills (from \`.claude/skills/\`) | Load Agent (from \`.claude/agents/\`) |
+|---------|------------------------------------------|-----------------------------------|
+| \`/toh:vibe\` | \`vibe-orchestrator\`, \`premium-experience\`, \`design-mastery\`, \`ui-first-builder\` | \`vibe-agent.md\` |
+| \`/toh:ui\` | \`ui-first-builder\`, \`design-excellence\`, \`response-format\` | \`ui-agent.md\` |
+| \`/toh:dev\` | \`dev-engineer\`, \`backend-engineer\`, \`response-format\` | \`dev-agent.md\` |
+| \`/toh:design\` | \`design-mastery\`, \`design-excellence\`, \`premium-experience\` | \`design-agent.md\` |
+| \`/toh:test\` | \`test-engineer\`, \`debug-protocol\`, \`error-handling\` | \`test-agent.md\` |
+| \`/toh:connect\` | \`backend-engineer\`, \`integrations\` | \`connect-agent.md\` |
+| \`/toh:plan\` | \`plan-orchestrator\`, \`business-context\`, \`smart-routing\` | \`plan-agent.md\` |
+| \`/toh:fix\` | \`debug-protocol\`, \`error-handling\`, \`test-engineer\` | \`core-orchestrator.md\` |
+| \`/toh:line\` | \`platform-specialist\`, \`integrations\` | \`platform-agent.md\` |
+| \`/toh:mobile\` | \`platform-specialist\`, \`ui-first-builder\` | \`platform-agent.md\` |
+| \`/toh:ship\` | \`version-control\`, \`progress-tracking\` | \`core-orchestrator.md\` |
+
+### Core Skills (Always Available)
+These skills apply to ALL commands:
+- \`memory-system\` - Memory read/write protocol
+- \`response-format\` - 3-section response format
+- \`smart-routing\` - Command routing logic
+
+### Loading Protocol:
+
+\`\`\`
+STEP 1: User types /toh:[command]
+        ↓
+STEP 2: IMMEDIATELY read required skills from table above
+        Example: /toh:vibe → Read 4 skill files:
+        - .claude/skills/vibe-orchestrator/SKILL.md
+        - .claude/skills/premium-experience/SKILL.md
+        - .claude/skills/design-mastery/SKILL.md
+        - .claude/skills/ui-first-builder/SKILL.md
+        ↓
+STEP 3: Read the corresponding agent file
+        Example: .claude/agents/vibe-agent.md
+        ↓
+STEP 4: Execute following skill + agent instructions
+        ↓
+STEP 5: Use 3-section response format (from response-format skill)
+        ↓
+STEP 6: Save memory (from memory-system skill)
+\`\`\`
+
+### ⚠️ NEVER Skip Skills!
+- Skills contain CRITICAL best practices
+- Skills have design tokens, patterns, and rules
+- Without skills, output quality drops significantly
+- If skill file not found, warn user and continue with defaults
+
+## 🔒 Skills Loading Checkpoint (REQUIRED)
+
+> **ENFORCEMENT:** You MUST report skills loaded at the START of your response!
+
+### Required Response Start:
+
+\`\`\`markdown
+📚 **Skills Loaded:**
+- skill-name-1 ✅ (brief what you learned)
+- skill-name-2 ✅ (brief what you learned)
+
+🤖 **Agent:** agent-name
+
+💾 **Memory:** Loaded ✅
+
+---
+
+[Then continue with your work...]
+\`\`\`
+
+### Why This Matters:
+- If you don't report skills → You didn't read them
+- If you skip skills → Output quality drops significantly
+- Skills have design tokens, patterns, and critical rules
+- This checkpoint proves you followed the protocol
 
 **⚠️ REMEMBER:** 
-- Read relevant skill BEFORE starting any work
+- Read relevant skill from \`.claude/skills/\` BEFORE starting any work
 - Follow Memory Protocol EVERY time
 - If memory is empty but project has code → Analyze and populate first!
 `;

@@ -481,6 +481,9 @@ These still work for users who prefer direct control:
 2. **Premium by Default** - New projects get 5+ pages, animations, everything
 3. **Design Profile** - Always detect and apply appropriate design
 4. **Zero Errors** - `npm run build` must pass before delivery
+   - If error → Fix immediately, don't tell user to fix!
+   - Loop until build passes 100%
+   - Common fixes: Tailwind classes, imports, types
 5. **3-Section Response** - Every response uses the format
 6. **Save Memory** - Never finish without updating memory
 7. **User Language** - Communicate in user's language, code in English

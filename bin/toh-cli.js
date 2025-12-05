@@ -47,7 +47,7 @@ program
   .command('install')
   .description('Install Toh Framework to your project')
   .option('-t, --target <path>', 'Target directory', process.cwd())
-  .option('-i, --ide <ides>', 'IDEs to configure (claude,cursor,gemini,codex)', 'claude,cursor')
+  .option('-i, --ide <ides>', 'IDEs to configure (claude,cursor,gemini,codex)', 'claude,cursor,gemini')
   .option('-q, --quick', 'Quick install without prompts')
   .action(async (options) => {
     const { install } = await import('../installer/install.js');

@@ -1,6 +1,6 @@
 # 🧠 Key Decisions
 
-> บันทึกการตัดสินใจสำคัญของโปรเจค เพื่อให้ AI และ Developer เข้าใจเหตุผลเบื้องหลัง
+> Record important project decisions so AI and developers understand the reasoning.
 
 ---
 
@@ -8,9 +8,9 @@
 
 | Date | Decision | Reason |
 |------|----------|--------|
-| {{DATE}} | ใช้ Toh Framework | AI-Orchestration Driven Development |
+| {{DATE}} | Use Toh Framework | AI-Orchestration Driven Development |
 | {{DATE}} | Next.js 14 App Router | Server Components, Better Performance |
-| {{DATE}} | Zustand สำหรับ State | Simple, No Boilerplate |
+| {{DATE}} | Zustand for State | Simple, No Boilerplate |
 
 ---
 

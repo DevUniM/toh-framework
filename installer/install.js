@@ -166,7 +166,7 @@ async function promptConfiguration(defaults) {
       choices: [
         { name: '🤖 Claude Code (Anthropic)', value: 'claude', checked: true },
         { name: '📝 Cursor', value: 'cursor', checked: true },
-        { name: '💎 Gemini CLI (Google)', value: 'gemini', checked: false },
+        { name: '💎 Gemini CLI / Antigravity (Google)', value: 'gemini', checked: true },
         { name: '🧠 Codex CLI (OpenAI)', value: 'codex', checked: false }
       ],
       validate: (input) => input.length > 0 ? true : 'Please select at least one IDE'
@@ -250,15 +250,16 @@ async function installComponent(componentName, targetDir) {
   const srcPath = join(SRC_DIR, componentName);
   let destPath;
   
+  // v1.4.0: All resources go to .toh/ (Central Resources)
   switch (componentName) {
     case 'skills':
-      destPath = join(targetDir, '.claude', 'skills');
+      destPath = join(targetDir, '.toh', 'skills');
       break;
     case 'agents':
-      destPath = join(targetDir, '.claude', 'agents');
+      destPath = join(targetDir, '.toh', 'agents');
       break;
     case 'commands':
-      destPath = join(targetDir, '.claude', 'commands');
+      destPath = join(targetDir, '.toh', 'commands');
       break;
     case 'templates':
       destPath = join(targetDir, '.toh', 'templates');
@@ -401,45 +402,73 @@ Updated: ${new Date().toISOString()}
 }
 
 function printNextSteps(config) {
+  const isEN = config.language === 'en';
+  
   console.log(chalk.cyan('┌────────────────────────────────────────────────────────────┐'));
-  console.log(chalk.cyan('│') + chalk.bold.white('  🎉 Toh Framework v1.1.0 Installed!                       ') + chalk.cyan('│'));
+  console.log(chalk.cyan('│') + chalk.bold.white('  🎉 Toh Framework v1.5.0 Installed!                       ') + chalk.cyan('│'));
   console.log(chalk.cyan('├────────────────────────────────────────────────────────────┤'));
   
   if (config.ides.includes('claude') || config.ides.includes('claude-code')) {
     console.log(chalk.cyan('│') + chalk.white('  Claude Code:                                             ') + chalk.cyan('│'));
-    console.log(chalk.cyan('│') + chalk.green('    /toh:plan') + chalk.gray(' - 🧠 วางแผนและ orchestrate งาน       ') + chalk.cyan('│'));
-    console.log(chalk.cyan('│') + chalk.green('    /toh:vibe') + chalk.gray(' - 🎨 เริ่มสร้างโปรเจคใหม่             ') + chalk.cyan('│'));
-    console.log(chalk.cyan('│') + chalk.green('    /toh:help') + chalk.gray(' - 📚 ดูรายการ commands ทั้งหมด       ') + chalk.cyan('│'));
+    if (isEN) {
+      console.log(chalk.cyan('│') + chalk.green('    /toh:plan') + chalk.gray(' - 🧠 Plan and orchestrate tasks        ') + chalk.cyan('│'));
+      console.log(chalk.cyan('│') + chalk.green('    /toh:vibe') + chalk.gray(' - 🎨 Create new project                ') + chalk.cyan('│'));
+      console.log(chalk.cyan('│') + chalk.green('    /toh:help') + chalk.gray(' - 📚 Show all commands                 ') + chalk.cyan('│'));
+    } else {
+      console.log(chalk.cyan('│') + chalk.green('    /toh:plan') + chalk.gray(' - 🧠 วางแผนและ orchestrate งาน       ') + chalk.cyan('│'));
+      console.log(chalk.cyan('│') + chalk.green('    /toh:vibe') + chalk.gray(' - 🎨 เริ่มสร้างโปรเจคใหม่             ') + chalk.cyan('│'));
+      console.log(chalk.cyan('│') + chalk.green('    /toh:help') + chalk.gray(' - 📚 ดูรายการ commands ทั้งหมด       ') + chalk.cyan('│'));
+    }
     console.log(chalk.cyan('│') + chalk.white('                                                           ') + chalk.cyan('│'));
   }
   
   if (config.ides.includes('cursor')) {
     console.log(chalk.cyan('│') + chalk.white('  Cursor:                                                  ') + chalk.cyan('│'));
-    console.log(chalk.cyan('│') + chalk.green('    @toh') + chalk.gray('       - เรียก Toh agent                    ') + chalk.cyan('│'));
+    if (isEN) {
+      console.log(chalk.cyan('│') + chalk.green('    @toh') + chalk.gray('       - Call Toh agent                     ') + chalk.cyan('│'));
+    } else {
+      console.log(chalk.cyan('│') + chalk.green('    @toh') + chalk.gray('       - เรียก Toh agent                    ') + chalk.cyan('│'));
+    }
     console.log(chalk.cyan('│') + chalk.white('                                                           ') + chalk.cyan('│'));
   }
   
   if (config.ides.includes('gemini') || config.ides.includes('gemini-cli')) {
-    console.log(chalk.cyan('│') + chalk.white('  Gemini CLI:                                              ') + chalk.cyan('│'));
-    console.log(chalk.cyan('│') + chalk.green('    gemini') + chalk.gray('     - Start Gemini CLI in project        ') + chalk.cyan('│'));
-    console.log(chalk.cyan('│') + chalk.green('    /toh:vibe') + chalk.gray('  - เริ่มสร้างโปรเจคใหม่                ') + chalk.cyan('│'));
+    console.log(chalk.cyan('│') + chalk.white('  Gemini CLI / Google Antigravity:                         ') + chalk.cyan('│'));
+    if (isEN) {
+      console.log(chalk.cyan('│') + chalk.green('    gemini') + chalk.gray('     - Start Gemini CLI in project        ') + chalk.cyan('│'));
+      console.log(chalk.cyan('│') + chalk.green('    /toh:vibe') + chalk.gray('  - Create new project                  ') + chalk.cyan('│'));
+    } else {
+      console.log(chalk.cyan('│') + chalk.green('    gemini') + chalk.gray('     - Start Gemini CLI in project        ') + chalk.cyan('│'));
+      console.log(chalk.cyan('│') + chalk.green('    /toh:vibe') + chalk.gray('  - เริ่มสร้างโปรเจคใหม่                ') + chalk.cyan('│'));
+    }
     console.log(chalk.cyan('│') + chalk.white('                                                           ') + chalk.cyan('│'));
   }
   
   if (config.ides.includes('codex') || config.ides.includes('codex-cli')) {
     console.log(chalk.cyan('│') + chalk.white('  Codex CLI:                                               ') + chalk.cyan('│'));
-    console.log(chalk.cyan('│') + chalk.green('    codex') + chalk.gray('      - Start Codex CLI in project         ') + chalk.cyan('│'));
-    console.log(chalk.cyan('│') + chalk.green('    /toh:vibe') + chalk.gray('  - เริ่มสร้างโปรเจคใหม่                ') + chalk.cyan('│'));
+    if (isEN) {
+      console.log(chalk.cyan('│') + chalk.green('    codex') + chalk.gray('      - Start Codex CLI in project         ') + chalk.cyan('│'));
+      console.log(chalk.cyan('│') + chalk.green('    /toh:vibe') + chalk.gray('  - Create new project                  ') + chalk.cyan('│'));
+    } else {
+      console.log(chalk.cyan('│') + chalk.green('    codex') + chalk.gray('      - Start Codex CLI in project         ') + chalk.cyan('│'));
+      console.log(chalk.cyan('│') + chalk.green('    /toh:vibe') + chalk.gray('  - เริ่มสร้างโปรเจคใหม่                ') + chalk.cyan('│'));
+    }
     console.log(chalk.cyan('│') + chalk.white('                                                           ') + chalk.cyan('│'));
   }
   
   console.log(chalk.cyan('│') + chalk.white('  Documentation:                                           ') + chalk.cyan('│'));
   console.log(chalk.cyan('│') + chalk.blue('    https://github.com/wasintoh/toh-framework             ') + chalk.cyan('│'));
   console.log(chalk.cyan('├────────────────────────────────────────────────────────────┤'));
-  console.log(chalk.cyan('│') + chalk.bold.yellow('  ✨ New in v1.1.0:                                        ') + chalk.cyan('│'));
-  console.log(chalk.cyan('│') + chalk.white('  • 🧠 /toh:plan - The Brain (orchestrate all agents)     ') + chalk.cyan('│'));
-  console.log(chalk.cyan('│') + chalk.white('  • 💾 Auto Memory - AI remembers across sessions         ') + chalk.cyan('│'));
-  console.log(chalk.cyan('│') + chalk.white('  • 📚 Enhanced /toh:dev - Read API docs from URLs        ') + chalk.cyan('│'));
+  console.log(chalk.cyan('│') + chalk.bold.yellow('  ✨ New in v1.5.0:                                        ') + chalk.cyan('│'));
+  if (isEN) {
+    console.log(chalk.cyan('│') + chalk.white('  • 🌌 Google Antigravity - Full Support!                 ') + chalk.cyan('│'));
+    console.log(chalk.cyan('│') + chalk.white('  • 🔒 Memory Protocol - Mandatory load/save              ') + chalk.cyan('│'));
+    console.log(chalk.cyan('│') + chalk.white('  • 📋 Skills Checkpoint - AI reports loaded skills       ') + chalk.cyan('│'));
+  } else {
+    console.log(chalk.cyan('│') + chalk.white('  • 🌌 Google Antigravity - รองรับเต็มรูปแบบ!            ') + chalk.cyan('│'));
+    console.log(chalk.cyan('│') + chalk.white('  • 🔒 Memory Protocol - บังคับ load/save ทุกครั้ง       ') + chalk.cyan('│'));
+    console.log(chalk.cyan('│') + chalk.white('  • 📋 Skills Checkpoint - AI รายงาน skills ที่โหลด     ') + chalk.cyan('│'));
+  }
   console.log(chalk.cyan('└────────────────────────────────────────────────────────────┘'));
   console.log('');
 }

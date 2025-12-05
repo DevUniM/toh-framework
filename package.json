@@ -1,8 +1,8 @@
 {
   "name": "toh-framework",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "type": "module",
-  "description": "AI-Orchestration Driven Development Framework - สั่งแล้วจบ ไม่ถาม ไม่รอ",
+  "description": "AI-Orchestration Driven Development Framework - Type Once, Have it all!",
   "author": {
     "name": "Wasin Treesinthuros",
     "email": "dr.wasin@gmail.com"
@@ -21,7 +21,11 @@
     "development",
     "framework",
     "claude",
+    "claude-code",
     "cursor",
+    "gemini",
+    "antigravity",
+    "google-antigravity",
     "vibe-coding",
     "agentic",
     "orchestration",

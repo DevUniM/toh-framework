@@ -1,5 +1,12 @@
 # 🎯 Toh Framework
 
+<!-- Logo - พี่โตใส่รูป logo ได้ที่นี่ -->
+<!--
+<p align="center">
+  <img src="./assets/logo.png" alt="Toh Framework" width="200">
+</p>
+-->
+
 > **"Type Once, Have it all!"** - AI-Orchestration Driven Development
 
 [![npm version](https://img.shields.io/npm/v/toh-framework.svg?style=flat-square)](https://www.npmjs.com/package/toh-framework)
@@ -8,6 +15,18 @@
 [![GitHub stars](https://img.shields.io/github/stars/wasintoh/toh-framework?style=flat-square)](https://github.com/wasintoh/toh-framework)
 
 🌐 **Official Website:** [tohframework.dev](https://tohframework.dev)
+
+> 📖 **[🇹🇭 Thai Documentation](docs/README-TH.md)**
+
+## 🤖 Supported IDEs
+
+| IDE | Status | Notes |
+|-----|--------|-------|
+| 🧠 **Claude Code** | ✅ Full Support | Slash commands, Memory system |
+| 📝 **Cursor** | ✅ Full Support | @ file references |
+| 🌌 **Google Antigravity** | ✅ **NEW!** Full Support | Latest Gemini integration |
+| 💎 **Gemini CLI** | ✅ Full Support | Context files auto-loaded |
+| 🤖 **Codex CLI** | ✅ Supported | OpenAI agents |
 
 > 📖 **[🇹🇭 Thai Documentation](docs/README-TH.md)**
 
@@ -35,9 +54,49 @@ Toh Framework enables you to:
 - **💼 Production Ready** - Not a prototype, ready for real use
 - **🔧 Multi-IDE Support** - Claude Code, Cursor, Gemini CLI, Codex CLI
 
-## 🆕 What's New in v1.4.0
+## 🆕 What's New in v1.5.0
 
-### ✨ Smart Single Command & Premium Experience
+### 🌌 Google Antigravity - Full Support!
+
+Now fully supports Google's **Antigravity** (Gemini IDE)! Install once, use everywhere:
+
+```bash
+npx toh-framework install
+# Select: Claude Code ✅, Cursor ✅, Gemini CLI / Antigravity ✅
+```
+
+### 🏗️ Dual Folder Architecture
+
+| IDE | Folder | Why |
+|-----|--------|-----|
+| Claude Code | `.claude/` | Required for slash commands |
+| Others | `.toh/` | Central resources |
+
+Both contain identical skills, agents, and commands - fully synced on install!
+
+### 🔒 Memory Protocol Enforcement
+
+- ✅ Mandatory memory load/save on EVERY task
+- ✅ Skills loading checkpoint - AI must report what it loaded
+- ✅ English-only memory files for consistency
+- ✅ Cross-IDE memory compatibility
+
+### 📋 Skills Loading Checkpoint
+
+AI now MUST report skills at the start of every response:
+```markdown
+📚 **Skills Loaded:**
+- design-mastery ✅ (13 business profiles)
+- premium-experience ✅ (5+ pages, animations)
+
+🤖 **Agent:** vibe-agent
+
+💾 **Memory:** Loaded ✅
+```
+
+---
+
+## ✨ v1.4.0 Features (Still Available!)
 
 | Feature | Description |
 |---------|-------------|

@@ -109,13 +109,13 @@ Users can use these patterns to invoke Toh Framework:
 
 ## Language Rules
 
-- **Response Language:** Always respond in English
+- **Response Language:** Respond in the same language the user uses (if unclear, default to English)
 - **UI Labels/Buttons:** English (Save, Cancel, Dashboard)
 - **Mock Data:** English names, addresses, phone numbers
 - **Code Comments:** English
 - **Error Messages:** English
 
-If user requests Thai language, then switch to Thai.
+If user writes in Thai, respond in Thai.
 
 ## Behavior Rules
 
@@ -218,7 +218,26 @@ Toh Framework has automatic memory:
 └── archive/      # Historical data
 \`\`\`
 
-**Auto-save** after tasks, **Auto-load** on new sessions.
+## 🚨 MANDATORY: Memory Protocol
+
+> **CRITICAL:** You MUST follow this protocol EVERY time!
+
+### BEFORE Starting ANY Work:
+1. Check \`.toh/memory/\` folder exists
+2. Read: \`@.toh/memory/active.md\`, \`@.toh/memory/summary.md\`, \`@.toh/memory/decisions.md\`
+3. If files empty but project has code → ANALYZE and populate first!
+4. Acknowledge: "Memory loaded! [Brief context]"
+
+### AFTER Completing ANY Work:
+1. Update \`@.toh/memory/active.md\` - what was done, next steps
+2. Update \`@.toh/memory/decisions.md\` - if decisions were made
+3. Update \`@.toh/memory/summary.md\` - if feature completed
+4. Confirm: "Memory saved ✅"
+
+### ⚠️ CRITICAL RULES:
+- NEVER start work without reading memory!
+- NEVER finish work without saving memory!
+- Memory files must ALWAYS be in English!
 
 ## Project Structure
 
@@ -238,6 +257,89 @@ lib/
 └── utils.ts          # Utilities
 stores/               # Zustand stores
 types/                # TypeScript types
+\`\`\`
+
+## Central Resources (.toh/)
+
+All Toh Framework resources are in the \`.toh/\` folder:
+- \`@.toh/skills/\` - Technical skills (design-mastery, premium-experience, etc.)
+- \`@.toh/agents/\` - Specialized AI agents
+- \`@.toh/commands/\` - Command definitions
+- \`@.toh/memory/\` - Memory system files
+
+## 🚨 MANDATORY: Skills & Agents Loading
+
+> **CRITICAL:** Before executing ANY /toh: command, you MUST load the required skills and agents!
+
+### Command → Skills → Agents Map
+
+| Command | Load These Skills | Load Agent |
+|---------|------------------|------------|
+| \`/toh:vibe\` | \`@.toh/skills/vibe-orchestrator/SKILL.md\`, \`@.toh/skills/premium-experience/SKILL.md\`, \`@.toh/skills/design-mastery/SKILL.md\`, \`@.toh/skills/ui-first-builder/SKILL.md\` | \`@.toh/agents/vibe-agent.md\` |
+| \`/toh:ui\` | \`@.toh/skills/ui-first-builder/SKILL.md\`, \`@.toh/skills/design-excellence/SKILL.md\` | \`@.toh/agents/ui-agent.md\` |
+| \`/toh:dev\` | \`@.toh/skills/dev-engineer/SKILL.md\`, \`@.toh/skills/backend-engineer/SKILL.md\` | \`@.toh/agents/dev-agent.md\` |
+| \`/toh:design\` | \`@.toh/skills/design-mastery/SKILL.md\`, \`@.toh/skills/design-excellence/SKILL.md\` | \`@.toh/agents/design-agent.md\` |
+| \`/toh:test\` | \`@.toh/skills/test-engineer/SKILL.md\`, \`@.toh/skills/debug-protocol/SKILL.md\` | \`@.toh/agents/test-agent.md\` |
+| \`/toh:connect\` | \`@.toh/skills/backend-engineer/SKILL.md\`, \`@.toh/skills/integrations/SKILL.md\` | \`@.toh/agents/connect-agent.md\` |
+| \`/toh:plan\` | \`@.toh/skills/plan-orchestrator/SKILL.md\`, \`@.toh/skills/business-context/SKILL.md\` | \`@.toh/agents/plan-agent.md\` |
+| \`/toh:fix\` | \`@.toh/skills/debug-protocol/SKILL.md\`, \`@.toh/skills/error-handling/SKILL.md\` | \`@.toh/agents/core-orchestrator.md\` |
+
+### Core Skills (Always Available)
+- \`@.toh/skills/memory-system/SKILL.md\` - Memory read/write protocol
+- \`@.toh/skills/response-format/SKILL.md\` - 3-section response format
+- \`@.toh/skills/smart-routing/SKILL.md\` - Command routing logic
+
+### Loading Protocol:
+1. User types /toh:[command]
+2. IMMEDIATELY read required skills using @ reference
+3. Read corresponding agent file
+4. Execute following skill + agent instructions
+5. Save memory after completion
+
+### ⚠️ NEVER Skip Skills!
+Skills contain CRITICAL best practices, design tokens, and rules.
+
+## 🔒 Skills Loading Checkpoint (REQUIRED)
+
+> **ENFORCEMENT:** You MUST report skills loaded at the START of your response!
+
+### Required Response Start:
+
+\`\`\`markdown
+📚 **Skills Loaded:**
+- skill-name-1 ✅ (brief what you learned)
+- skill-name-2 ✅ (brief what you learned)
+
+🤖 **Agent:** agent-name
+
+💾 **Memory:** Loaded ✅
+
+---
+
+[Then continue with your work...]
+\`\`\`
+
+### Why This Matters:
+- If you don't report skills → You didn't read them
+- If you skip skills → Output quality drops significantly
+- Skills have design tokens, patterns, and critical rules
+- This checkpoint proves you followed the protocol
+
+### Example:
+
+\`\`\`markdown
+📚 **Skills Loaded:**
+- design-mastery ✅ (13 business profiles, design tokens)
+- design-excellence ✅ (anti-patterns to avoid, spacing rules)
+
+🤖 **Agent:** design-reviewer
+
+💾 **Memory:** Loaded - working on Restaurant POS system
+
+---
+
+## ✅ What I Did
+...
 \`\`\`
 
 ## Mock Data Examples
@@ -291,13 +393,13 @@ alwaysApply: true
 
 ## กฎเรื่องภาษา
 
-- **ภาษาในการตอบ:** ตอบเป็นภาษาไทยเสมอ
+- **ภาษาในการตอบ:** ตอบตามภาษาที่ผู้ใช้พิมพ์มา (ถ้าไม่แน่ใจ ให้ใช้ภาษาไทย)
 - **UI Labels/Buttons:** ภาษาไทย (บันทึก, ยกเลิก, แดชบอร์ด)
 - **Mock Data:** ชื่อไทย, ที่อยู่ไทย, เบอร์โทรไทย
 - **Code Comments:** ภาษาไทยได้
 - **Error Messages:** ภาษาไทย
 
-ถ้าผู้ใช้ต้องการภาษาอังกฤษ ค่อยเปลี่ยน
+ถ้าผู้ใช้พิมพ์เป็นภาษาอังกฤษ ก็ตอบเป็นภาษาอังกฤษ
 
 ## กฎที่ต้องปฏิบัติ
 
@@ -399,7 +501,26 @@ Toh Framework มีระบบ Memory:
 └── archive/      # ข้อมูลเก่า
 \`\`\`
 
-**Auto-save** หลังทำงาน, **Auto-load** เมื่อเริ่ม session ใหม่
+## 🚨 บังคับ: Memory Protocol
+
+> **สำคัญมาก:** ต้องทำตามนี้ทุกครั้ง!
+
+### ก่อนเริ่มทำงาน:
+1. เช็ค \`.toh/memory/\` folder มีไหม
+2. อ่าน: \`@.toh/memory/active.md\`, \`@.toh/memory/summary.md\`, \`@.toh/memory/decisions.md\`
+3. ถ้าไฟล์ว่างแต่มี code → วิเคราะห์โปรเจคก่อน!
+4. บอก User: "Memory loaded! [สรุปสั้นๆ]"
+
+### หลังทำงานเสร็จ:
+1. อัพเดท \`@.toh/memory/active.md\` - สิ่งที่ทำ, ขั้นตอนถัดไป
+2. อัพเดท \`@.toh/memory/decisions.md\` - ถ้ามีการตัดสินใจ
+3. อัพเดท \`@.toh/memory/summary.md\` - ถ้า feature เสร็จ
+4. บอก User: "Memory saved ✅"
+
+### ⚠️ กฎสำคัญ:
+- ห้ามเริ่มงานโดยไม่อ่าน memory!
+- ห้ามจบงานโดยไม่บันทึก memory!
+- Memory files ต้องเป็นภาษาอังกฤษเสมอ!
 
 ## โครงสร้าง Project
 
@@ -420,6 +541,71 @@ lib/
 stores/               # Zustand stores
 types/                # TypeScript types
 \`\`\`
+
+## Central Resources (.toh/)
+
+ทรัพยากรทั้งหมดของ Toh Framework อยู่ใน \`.toh/\`:
+- \`@.toh/skills/\` - ทักษะเฉพาะทาง (design-mastery, premium-experience ฯลฯ)
+- \`@.toh/agents/\` - AI Agents เฉพาะทาง
+- \`@.toh/commands/\` - คำสั่งต่างๆ
+- \`@.toh/memory/\` - ไฟล์ Memory System
+
+## 🚨 บังคับ: โหลด Skills & Agents
+
+> **สำคัญมาก:** ก่อน execute คำสั่ง /toh: ใดๆ ต้องโหลด skills และ agents ที่เกี่ยวข้อง!
+
+### คำสั่ง → Skills → Agents
+
+| คำสั่ง | โหลด Skills | โหลด Agent |
+|--------|------------|------------|
+| \`/toh:vibe\` | \`@.toh/skills/vibe-orchestrator/SKILL.md\`, \`@.toh/skills/premium-experience/SKILL.md\`, \`@.toh/skills/design-mastery/SKILL.md\` | \`@.toh/agents/vibe-agent.md\` |
+| \`/toh:ui\` | \`@.toh/skills/ui-first-builder/SKILL.md\`, \`@.toh/skills/design-excellence/SKILL.md\` | \`@.toh/agents/ui-agent.md\` |
+| \`/toh:dev\` | \`@.toh/skills/dev-engineer/SKILL.md\`, \`@.toh/skills/backend-engineer/SKILL.md\` | \`@.toh/agents/dev-agent.md\` |
+| \`/toh:design\` | \`@.toh/skills/design-mastery/SKILL.md\`, \`@.toh/skills/design-excellence/SKILL.md\` | \`@.toh/agents/design-agent.md\` |
+| \`/toh:test\` | \`@.toh/skills/test-engineer/SKILL.md\`, \`@.toh/skills/debug-protocol/SKILL.md\` | \`@.toh/agents/test-agent.md\` |
+| \`/toh:connect\` | \`@.toh/skills/backend-engineer/SKILL.md\`, \`@.toh/skills/integrations/SKILL.md\` | \`@.toh/agents/connect-agent.md\` |
+| \`/toh:plan\` | \`@.toh/skills/plan-orchestrator/SKILL.md\`, \`@.toh/skills/business-context/SKILL.md\` | \`@.toh/agents/plan-agent.md\` |
+| \`/toh:fix\` | \`@.toh/skills/debug-protocol/SKILL.md\`, \`@.toh/skills/error-handling/SKILL.md\` | \`@.toh/agents/core-orchestrator.md\` |
+
+### Core Skills (ใช้ได้เสมอ)
+- \`@.toh/skills/memory-system/SKILL.md\` - ระบบ Memory
+- \`@.toh/skills/response-format/SKILL.md\` - รูปแบบการตอบ 3 ส่วน
+
+### ขั้นตอนการโหลด:
+1. ผู้ใช้พิมพ์ /toh:[command]
+2. อ่าน skills ที่จำเป็นจาก @ reference ทันที
+3. อ่าน agent ที่เกี่ยวข้อง
+4. ทำงานตามคำสั่งใน skill + agent
+5. บันทึก memory หลังเสร็จ
+
+### ⚠️ ห้ามข้าม Skills!
+Skills มี best practices, design tokens และกฎสำคัญ
+
+## 🔒 Skills Loading Checkpoint (บังคับ)
+
+> **บังคับ:** ต้องรายงาน skills ที่โหลดมาที่ต้นของ response!
+
+### รูปแบบการเริ่มต้น Response:
+
+\`\`\`markdown
+📚 **Skills ที่โหลด:**
+- skill-name-1 ✅ (สรุปสั้นๆ ว่าได้อะไร)
+- skill-name-2 ✅ (สรุปสั้นๆ ว่าได้อะไร)
+
+🤖 **Agent:** ชื่อ agent
+
+💾 **Memory:** โหลดแล้ว ✅
+
+---
+
+[แล้วค่อยทำงานต่อ...]
+\`\`\`
+
+### ทำไมต้องทำ:
+- ถ้าไม่รายงาน skills → แปลว่าไม่ได้อ่าน
+- ถ้าข้าม skills → คุณภาพงานจะลดลงมาก
+- Skills มี design tokens, patterns และกฎสำคัญ
+- Checkpoint นี้พิสูจน์ว่าทำตาม protocol
 
 ## ตัวอย่าง Mock Data
 
