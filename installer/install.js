@@ -405,7 +405,7 @@ function printNextSteps(config) {
   const isEN = config.language === 'en';
   
   console.log(chalk.cyan('┌────────────────────────────────────────────────────────────┐'));
-  console.log(chalk.cyan('│') + chalk.bold.white('  🎉 Toh Framework v1.5.0 Installed!                       ') + chalk.cyan('│'));
+  console.log(chalk.cyan('│') + chalk.bold.white('  🎉 Toh Framework v1.5.1 Installed!                       ') + chalk.cyan('│'));
   console.log(chalk.cyan('├────────────────────────────────────────────────────────────┤'));
   
   if (config.ides.includes('claude') || config.ides.includes('claude-code')) {

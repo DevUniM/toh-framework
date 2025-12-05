@@ -2,6 +2,20 @@
 
 All notable changes to Toh Framework will be documented in this file.
 
+## [1.5.1] - 2025-12-05
+
+### Fixed
+
+- Install finish message now respects language selection (EN/TH)
+- AI now responds in the same language the user types (not forced EN or TH)
+
+### Documentation
+
+- Updated README-TH.md with v1.5.0 features and Supported IDEs table
+- Added "Update to Latest Version" section in both README.md and README-TH.md
+
+---
+
 ## [1.5.0] - 2025-12-05
 
 ### 🌌 Google Antigravity - Full Support!
