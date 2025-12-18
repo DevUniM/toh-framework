@@ -1,0 +1,44 @@
+---
+description: Toh Agents reference - วิธีใช้ /toh commands
+globs:
+alwaysApply: false
+---
+
+# Toh Agents
+
+เรียกใช้ Toh agents โดยพิมพ์ command ตามด้วย request
+
+## Commands ที่ใช้ได้
+
+| Command | คำอธิบาย |
+|---------|----------|
+| /toh-vibe | สร้างโปรเจคใหม่ UI + Logic + Mock Data |
+| /toh-ui | สร้าง UI components และ pages |
+| /toh-dev | เพิ่ม business logic และ state management |
+| /toh-design | ปรับ design ให้ดูเป็นมืออาชีพ |
+| /toh-test | Auto test และ fix จนผ่าน |
+| /toh-connect | เชื่อม Supabase backend |
+| /toh-line | LINE Mini App integration |
+| /toh-mobile | Mobile app ด้วย Expo/React Native |
+| /toh-fix | Debug และ fix issues |
+| /toh-ship | Deploy ขึ้น production |
+
+## ตัวอย่างการใช้งาน
+
+```
+/toh-vibe ระบบจัดการร้านกาแฟ มี POS สต็อก รายงานยอดขาย
+```
+
+Agent จะ:
+1. สร้างโครงสร้าง Next.js 14 project
+2. สร้าง UI ทุกหน้าพร้อม Thai mock data
+3. เพิ่ม state management ด้วย Zustand
+4. สร้าง type definitions
+5. ทำให้ responsive และ production-ready
+
+## กฎเรื่องภาษา
+
+- ตอบเป็นภาษาไทยเสมอ
+- UI text เป็นภาษาไทย
+- Mock data เป็นภาษาไทย
+- ถ้าผู้ใช้ต้องการภาษาอังกฤษ ค่อยเปลี่ยน

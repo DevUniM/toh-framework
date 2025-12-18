@@ -1,0 +1,11 @@
+{
+  "contextFiles": [
+    ".gemini/GEMINI.md",
+    ".toh/agents/*.md",
+    ".toh/commands/*.md",
+    ".toh/skills/**/*.md",
+    ".toh/memory/*.md"
+  ],
+  "systemInstruction": "คำสั่งการทำงานอยู่ใน .gemini/GEMINI.md ปฏิบัติตาม Toh Framework methodology ทรัพยากรอยู่ใน .toh/ ตอบตามภาษาที่ผู้ใช้พิมพ์มา",
+  "model": "gemini-2.5-flash"
+}
